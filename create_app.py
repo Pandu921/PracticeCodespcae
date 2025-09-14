@@ -140,5 +140,5 @@ if __name__ == "__main__":
     print("✅ API permissions added (Graph User.Read + User.Read.All).")
 
     # Update Internal Notes
-    update_internal_notes(app["id"], "Updated notes: now managed by CloudOps")
+    update_internal_notes(app["id"],NOTES_TEXT)
     print("✅ Internal notes updated.")
