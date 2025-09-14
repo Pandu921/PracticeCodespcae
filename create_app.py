@@ -109,13 +109,14 @@ def update_internal_notes(app_object_id, notes):
 # ------------------ Main ------------------
 if __name__ == "__main__":
     display_name = os.environ.get("app_display_name")
-    redirect_uris = [os.environ.get("redirect_uris")]
+    redirect_uris = os.environ.get("REDIRECT_URIS", "")
+    redirect_uris_list = [u.strip() for u in redirect_uris.split(",") if u.strip()]
     NOTES_TEXT = os.environ.get("notes_text")
 
     OWNER_MAILNICKNAME = os.environ.get("OWNER_MAILNICKNAME")
 
     # Create App
-    app = create_app(display_name, redirect_uris, NOTES_TEXT)
+    app = create_app(display_name, redirect_uris_list, NOTES_TEXT)
     print("✅ Application created:", app["appId"])
     
     # Add Secret
