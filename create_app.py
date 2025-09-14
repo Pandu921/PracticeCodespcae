@@ -18,9 +18,9 @@ Requirements:
 import os, requests
 from msal import ConfidentialClientApplication
 
-TENANT_ID = os.environ.get("AZ_TENANT_ID")
-CLIENT_ID = os.environ.get("AZ_CLIENT_ID")        # Mgmt App (with Directory.ReadWrite.All)
-CLIENT_SECRET = os.environ.get("AZ_CLIENT_SECRET")
+TENANT_ID = os.environ.get("TENANT_ID")
+CLIENT_ID = os.environ.get("CLIENT_ID")        # Mgmt App (with Directory.ReadWrite.All)
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 
 GRAPH_SCOPE = ["https://graph.microsoft.com/.default"]
 GRAPH_BASE = "https://graph.microsoft.com/v1.0"
