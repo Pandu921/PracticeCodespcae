@@ -109,7 +109,7 @@ def update_internal_notes(app_object_id, notes):
 # ------------------ Main ------------------
 if __name__ == "__main__":
     display_name = os.environ.get("app_display_name")
-    redirect_uris = os.environ.get("redirect_uris")
+    redirect_uris = [os.environ.get("redirect_uris")]
     NOTES_TEXT = os.environ.get("notes_text")
 
     OWNER_MAILNICKNAME = os.environ.get("OWNER_MAILNICKNAME")
