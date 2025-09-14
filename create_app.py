@@ -108,9 +108,9 @@ def update_internal_notes(app_object_id, notes):
 
 # ------------------ Main ------------------
 if __name__ == "__main__":
-    display_name = "MyOAuthApp-Managed"
-    redirect_uris = ["http://localhost/callback"]
-    NOTES_TEXT = "Managed by DevOps team. Contact: devops@example.com"
+    display_name = os.environ.get("app_display_name")
+    redirect_uris = os.environ.get("redirect_uris")
+    NOTES_TEXT = os.getenv.get("notes_text")
 
     OWNER_MAILNICKNAME = os.environ.get("OWNER_MAILNICKNAME")
 
