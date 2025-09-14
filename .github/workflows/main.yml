@@ -1,0 +1,49 @@
+name: App Registration Automation
+
+on:
+  workflow_dispatch:   # Allows manual trigger with inputs
+    inputs:
+      app_display_name:
+        description: 'Application Display Name'
+        required: true
+        default: 'MyOAuthApp-Auto'
+      redirect_uris:
+        description: 'Comma separated redirect URIs'
+        required: true
+        default: 'https://localhost:8000/callback'
+      owner_mailnickname:
+        description: 'Owner Mail Nickname'
+        required: true
+        default: 'dev-owner'
+      notes_text:
+        description: 'Internal Notes'
+        required: false
+        default: 'Managed by DevOps team'
+
+jobs:
+  create-app:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: pip install requests msal
+
+    - name: Run App Registration Script
+      env:
+        APP_DISPLAY_NAME: ${{ github.event.inputs.app_display_name }}
+        REDIRECT_URIS: ${{ github.event.inputs.redirect_uris }}
+        OWNER_MAILNICKNAME: ${{ github.event.inputs.owner_mailnickname }}
+        NOTES_TEXT: ${{ github.event.inputs.notes_text }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      run: |
+        python create_app.py
